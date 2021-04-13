@@ -5,8 +5,8 @@ import ssl
 
 smtp_server = 'smtp.gmail.com'
 port = 587  # For starttls
-sender_email = 'decorouzweb@gmail.com'
-receiver_email = 'abiola2326@gmail.com'
+sender_email = 'sender_email@domain.com'
+receiver_email = 'receiver@domain.com'
 password = input("Type your password and press enter: ")
 message = ' Testing new approaches to use the EmailMessage module'
 
