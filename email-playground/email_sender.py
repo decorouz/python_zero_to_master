@@ -1,21 +1,28 @@
 from email.message import EmailMessage
 import smtplib
 import ssl
+from pathlib import Path
+from string import Template
+# from email.mime.text import MIMEText
 
 
 smtp_server = 'smtp.gmail.com'
 port = 587  # For starttls
-sender_email = 'sender_email@domain.com'
-receiver_email = 'receiver@domain.com'
+sender_email = 'mymail@gmail.com'
+receiver_name = 'james'
+receiver_email = ['your2@gmail.com', 'your3@yahoo.com']
 password = input("Type your password and press enter: ")
-message = ' Testing new approaches to use the EmailMessage module'
+# message = ' Testing new approaches to use the EmailMessage module'
 
+html = Template(Path('index.html').read_text())
 msg = EmailMessage()
-msg.set_content(message)
-
-msg['Subject'] = 'Testing without ehlo'
+msg['Subject'] = 'First html email'
 msg['From'] = sender_email
 msg['To'] = receiver_email
+
+msg.set_content(html.substitute(
+    {'name': 'Your_name', 'r_name': receiver_name}), 'html')
+
 
 # Create a secure SSL context
 context = ssl.create_default_context()
